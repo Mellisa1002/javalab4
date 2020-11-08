@@ -34,12 +34,22 @@
     
     
 <br>
+
+
+### 实验思路
+	1.
+	2.
+	3.
+	4.
     
 
 ### 实验结果
 ----
-![](https://github.com/Mellisa1002/javalab1/blob/main/%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C.png)
-
+有未发工资时,产生异常的运行结果:
+![](https://github.com/Mellisa1002/javalab4/blob/main/%E6%8A%9B%E5%87%BA%E6%9C%AA%E5%8F%91%E5%B7%A5%E8%B5%84%E5%BC%82%E5%B8%B8.png)
+----
+都发工资后,无异常的运行结果:
+![](https://github.com/Mellisa1002/javalab4/blob/main/%E6%97%A0%E5%BC%82%E5%B8%B8.png)
 <br>
 
 ### 实验感想
