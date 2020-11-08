@@ -15,186 +15,26 @@
 <br>
 
 
-### 实验设计
+### 实验要求
+	1.在博士研究生类中实现各个接口定义的抽象方法;
+	2.对年学费和年收入进行统计，用收入减去学费，求得纳税额；
+	3.国家最新纳税标准（系数），属于某一时期的特定固定值，与实例化对象没有关系，考虑如何用static  final修饰定义。
+	4.实例化研究生类时，可采用运行时通过main方法的参数args一次性赋值，也可采用Scanner类实现运行时交互式输入。
+	5.根据输入情况，要在程序中做异常处理。
+
 
 <br>
 
 
-    1.按照题目要求，先完成基本的对pc机的模拟，含有CPU、HardDisk、PC三个类，以及最后一个Test类。
-    2.在基本完成的基础上，加入CPU的新属性品牌，并加入对CPU品牌和速度的逻辑判断；加入HD的新属性类型，同时有对HD的存储容量和类型的逻辑判断。
+### 实验内容
+	1.某学校为了给学生提供勤工俭学机会，也减轻授课教师的部分压力，准许博士研究生参与课程的助教工作。此时，该博士研究生有双重身份：学生和助教教师。
+	2.设计两个管理接口：学生管理接口和教师管理接口。学生接口必须包括缴纳学费、查学费的方法；教师接口包括发放薪水和查询薪水的方法。
+	3.设计博士研究生类，实现上述的两个接口，该博士研究生应具有姓名、性别、年龄、每学期学费、每月薪水等属性。（其他属性及方法，可自行发挥）
+	4.编写测试类，并实例化至少两名博士研究生，统计他们的年收入和学费。根据两者之差，算出每名博士研究生的年应纳税金额（国家最新工资纳税标准，请自行检索）。
     
     
 <br>
     
-### 核心方法
-
-*CPU类*
-
-
-
-```
-package lab1;
-
-public class CPU {
-	private int speed;        //速度
-	public String brand;      //品牌
-	CPU(){}                           //构造方法1
-	CPU(int speed , String brand){    //构造方法2
-		this.speed = speed;
-		this.brand = brand;		
-	}
-	void setSpeed(int m) {//设置cpu速度
-			speed = m ;	
-	}
-	int getSpeed() {             //获取cpu速度
-		if(speed<=0) {
-			System.out.println("cpu的速度有误." );
-			return speed;
-		}
-		else {	
-		System.out.println("CPU的速度为:" + speed);
-		return speed;
-		}
-	}
-	String setBrand(String b) {  //判断cpu品牌是否正确
-		this.brand = b ;	
-		String intel=new String("Intel");
-		String cnintel=new String("英特尔");
-	    String amd=new String("AMD");
-		if (brand.equals(intel))
-		{
-			return brand;
-		}
-		else if(brand.equals(cnintel))
-		{
-			return brand;	  
-		}
-		else if(brand.equals(amd))
-		{
-			return brand;
-		}
-		else 
-		{
-			brand="这个不是CPU品牌哦!";
-			return brand;
-		}			
-		
-	}
-
-}
-
-``` 
-
-*HardDisk类*
-
-```
-package lab1;
-
-public class HardDisk {
-	private int amount;          //硬盘容量
-	public String hdType;       //硬盘类型
-	HardDisk(){}                           //构造方法1
-	HardDisk(int amount,String hdType){    //构造方法2
-		this.amount=amount;
-		this.hdType=hdType;
-	}
-	void setAmount(int m){       //设定硬盘容量
-		amount = m;
-	}
-	int getAmound() {            //获取硬盘容量
-		return amount;
-	}
-	String setHDType(String t) { //设置并判断硬盘品牌是否正确
-		this.hdType = t ;	
-		String SATA=new String("SATA");
-		String SCSI=new String("SCSI");
-	    String SAS=new String("SAS");
-		if (hdType.equals(SATA))
-		{
-			return hdType;
-		}
-		else if(hdType.equals(SCSI))
-		{
-			return hdType;	  
-		}
-		else if(hdType.equals(SAS))
-		{
-			return hdType;
-		}
-		else 
-		{
-			hdType="这个不是一个正确的硬盘类型!";
-			return hdType;
-		}	
-		}
-	}
-```
-
-*PC类*
-
-```
-package lab1;
-
-public class PC {
-	private CPU cpu;                    //cpu属性
-	private HardDisk HD;                //HD属性
-	
-	PC(){}                      //构造方法1
-	PC(CPU cpu,HardDisk HD){    //构造方法2
-		this.cpu = cpu;
-		this.HD = HD;
-	}
-	void setCPU(CPU c){      
-		cpu = c ;
-		}
-	void setHardDisk(HardDisk h) {
-		HD = h ;
-		}
-	
-	void show() {              //屏幕输出
-		cpu.getSpeed();
-		System.out.println("CPU的品牌为:" + cpu.setBrand(cpu.brand));
-		System.out.println("硬盘的容量为:" + HD.getAmound());
-		System.out.println("硬盘的类型为:" + HD.setHDType(HD.hdType));
-	}
-
-}
-
-```
-
-*Test类*
-
-```
-package lab1;
-
-public class Test {
-	public static void main(String args[]) {
-		CPU cpu=new CPU(2000,"Intel");                     //直接定义CPU HD PC
-		HardDisk disk=new HardDisk(512,"SATA");            
-		PC pc=new PC();
-	
-	    cpu.setSpeed(8200); 
-	    cpu.setBrand("aMD"); 
-	    disk.setAmount(256);
-	    
-	    pc.setCPU(cpu);
-	    pc.setHardDisk(disk);
-	    pc.show();
-	    
-	    cpu.setSpeed(-2200); 
-	    cpu.setBrand("Intel"); 
-	    disk.setAmount(512);
-	    disk.setHDType("disk");
-	    
-	    pc.setCPU(cpu);
-	    pc.setHardDisk(disk);
-	    pc.show();
-		
-	}
-
-}
-
-```
 
 ### 实验结果
 ----
